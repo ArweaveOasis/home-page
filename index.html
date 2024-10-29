@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arweave Oasis 是 Arweave 专注于亚洲市场长期拓展目标，从开发、推广与赋能等方面助力开发者
+    成长的开放式合作平台。">
+    <meta name="keywords" content="Arweave 生态,开发者社区,开发者文档,AO 生态。">
     <title>ArweaveOasis - 永久存储的绿洲</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -22,8 +25,6 @@
         body {
             color: var(--text-color);
             min-height: 100vh;
-            background: url('./images/background.jpg') no-repeat center center fixed;
-            background-size: cover;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -145,12 +146,20 @@
             justify-content: center;
             padding: 2rem;
             margin-top: 60px;
+            position: relative;
+            background: url('./images/background.png') repeat;
+            background-size: cover; /* 确保背景图不会裁切 */
+            background-repeat: no-repeat;
         }
-
+        
+        /* 将背景图用于这里，使其随内容一起滚动 */
         .hero-content {
             text-align: center;
             max-width: 800px;
             width: 100%;
+            position: relative;
+            padding: 3rem;
+            border-radius: 10px;
         }
 
         .hero h1 {
