@@ -155,11 +155,12 @@
         /* 将背景图用于这里，使其随内容一起滚动 */
         .hero-content {
             text-align: center;
-            max-width: 800px;
             width: 100%;
-            position: relative;
+            max-width: 1200px;
+            min-width: 300px;
             padding: 3rem;
             border-radius: 10px;
+            position: relative;
             margin-top: -110px;
         }
 
@@ -206,6 +207,33 @@
 
         .button:hover {
             transform: translateY(-2px);
+        }
+
+        @media (min-width: 1200px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            .hero p {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .hero h1 {
+                font-size: 5rem;
+            }
+            .hero p {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (min-width: 2000px) {
+            .hero h1 {
+                font-size: 6rem;
+            }
+            .hero p {
+                font-size: 2rem;
+            }
         }
 
         /* 特性部分 */
