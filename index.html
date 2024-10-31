@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Arweave Oasis 是 Arweave 专注于亚洲市场长期拓展目标，从开发、推广与赋能等方面助力开发者
-    成长的开放式合作平台。">
+    <meta name="description" content="Arweave Oasis 是 Arweave 专注于亚洲市场长期拓展目标，从开发、推广与赋能等方面助力开发者成长的开放式合作平台。">
     <meta name="keywords" content="Arweave 生态,开发者社区,开发者文档,AO 生态。">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -36,11 +35,6 @@
             overflow-x: hidden;
         }
 
-        p, h1, h2, h3, h4, h5, h6 {
-            -webkit-user-select: text;
-            user-select: text;
-        }
-
         body {
             color: var(--text-color);
             min-height: 100%;
@@ -49,15 +43,6 @@
             position: relative;
             display: flex;
             flex-direction: column;
-        }
-
-        body.drawer-open {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
         }
 
         .navbar {
@@ -96,50 +81,165 @@
             color: var(--text-color);
         }
 
-        .nav-drawer {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 50%;
-            max-width: 250px;
-            height: 100%;
-            background: white;
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            z-index: 1003;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .nav-drawer.show {
-            transform: translateX(0);
-        }
-
-        .drawer-header {
-            display: none;
-            justify-content: flex-start;
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .close-button {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            color: var(--text-color);
+        .nav-links {
             display: flex;
             align-items: center;
+            gap: 2rem;
+            /*flex-direction: row-reverse;*/
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-btn {
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: auto;
             justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            transition: background-color 0.3s;
-            margin: 0.5rem;
+        }
+
+        .language-btn i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .language-btn.active i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 100px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            z-index: 1001;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-drawer {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 50%;
+                max-width: 250px;
+                height: 100%;
+                background: white;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 1003;
+            }
+
+            .nav-drawer.show {
+                transform: translateX(0);
+            }
+
+            .nav-links {
+                flex-direction: column;
+                padding: 1.5rem 1rem;
+                gap: 1.5rem;
+                height: 100%;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                font-size: 0.95rem;
+                border-radius: 4px;
+            }
+
+            .drawer-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s;
+                z-index: 1002;
+            }
+
+            .drawer-overlay.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .drawer-header {
+                display: flex;
+                justify-content: flex-start;
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+                margin-bottom: 1rem;
+            }
+
+            .close-button {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                color: var(--text-color);
+            }
         }
 
         .close-button:hover {
@@ -165,6 +265,11 @@
             visibility: visible;
         }
 
+        .nav-link {
+            white-space: nowrap;  /* 防止文字换行 */
+            display: inline-block;  /* 确保内容在一行显示 */
+        }
+        
         .nav-links {
             display: flex;
             align-items: center;
@@ -559,14 +664,14 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <div class="nav-drawer mobile-specific">
+        <div class="nav-drawer">
             <div class="drawer-header">
                 <button class="close-button" aria-label="Close menu">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="nav-links">
-                <a href="#" class="nav-link docs-link" data-lang-zh="技术文档" data-lang-en="Docs">技术文档</a>
+                <a href="#" class="nav-link docs-link" data-lang-zh="文档" data-lang-en="Docs">文档</a>
                 <a href="https://arweave.org" class="nav-link">Arweave</a>
                 <a href="https://ao.arweave.dev" class="nav-link">AO</a>
                 <div class="language-dropdown">
@@ -640,20 +745,18 @@
             zh: 'https://arweaveoasis.notion.site/Start-Building-with-AO-11cc18e690da80c0aa1fc2c908738167?pvs=4',
             en: 'https://cookbook_ao.g8way.io/welcome/index.html'
         };
-
+    
         let currentLang = localStorage.getItem('language') || 'zh';
         let scrollPosition = 0;
-
-        // 移动端菜单控制
+    
         const menuButton = document.querySelector('.menu-button');
         const closeButton = document.querySelector('.close-button');
         const navDrawer = document.querySelector('.nav-drawer');
         const drawerOverlay = document.querySelector('.drawer-overlay');
-
-        // 初始化触摸事件状态
+    
         let touchStartX = 0;
         let touchEndX = 0;
-
+    
         function openDrawer() {
             scrollPosition = window.pageYOffset;
             navDrawer.classList.add('show');
@@ -661,7 +764,7 @@
             document.body.classList.add('drawer-open');
             document.body.style.top = `-${scrollPosition}px`;
         }
-
+    
         function closeDrawer() {
             navDrawer.classList.remove('show');
             drawerOverlay.classList.remove('show');
@@ -669,164 +772,106 @@
             document.body.style.top = '';
             window.scrollTo(0, scrollPosition);
         }
-
+    
         menuButton.addEventListener('click', (e) => {
             e.stopPropagation();
             openDrawer();
         });
-
+    
         closeButton.addEventListener('click', (e) => {
             e.stopPropagation();
             closeDrawer();
         });
-
+    
         drawerOverlay.addEventListener('click', (e) => {
             e.stopPropagation();
             closeDrawer();
         });
-
-        // 添加滑动关闭功能
+    
         navDrawer.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
         }, { passive: true });
-
+    
         navDrawer.addEventListener('touchmove', (e) => {
             touchEndX = e.touches[0].clientX;
             const diffX = touchEndX - touchStartX;
             
-            // 只允许向右滑动关闭
             if (diffX > 0) {
                 navDrawer.style.transform = `translateX(${diffX}px)`;
             }
         }, { passive: true });
-
+    
         navDrawer.addEventListener('touchend', () => {
             const diffX = touchEndX - touchStartX;
             navDrawer.style.transform = '';
             
-            if (diffX > 100) { // 如果滑动距离超过100px
+            if (diffX > 100) {
                 closeDrawer();
             }
         });
-
-        // 处理 iOS 滚动问题
-       navDrawer.addEventListener('touchmove', (e) => {
-           if (e.target.closest('.nav-links')) {
-               // 允许导航链接区域滚动
-               e.stopPropagation();
-           } else {
-               // 防止其他区域滚动
-               e.preventDefault();
-           }
-       }, { passive: false });
-
-       // 防止背景滚动
-       drawerOverlay.addEventListener('touchmove', (e) => {
-           e.preventDefault();
-       }, { passive: false });
-
-       // 处理窗口大小改变
-       let resizeTimer;
-       window.addEventListener('resize', () => {
-           clearTimeout(resizeTimer);
-           resizeTimer = setTimeout(() => {
-               if (window.innerWidth > 768) {
-                   closeDrawer();
-               }
-           }, 250);
-       });
-
-       // 处理微信浏览器返回按钮
-       window.addEventListener('pageshow', (e) => {
-           if (e.persisted) {
-               closeDrawer();
-           }
-       });
-
-       // 语言切换相关
-       window.addEventListener('DOMContentLoaded', () => {
-           // 设置初始语言
-           changeLanguage(currentLang, false);
-           document.querySelector('.current-lang').textContent = 
-               currentLang === 'zh' ? '中文' : 'EN';
-
-           // 添加移动端特定处理
-           if ('ontouchstart' in window) {
-               document.addEventListener('touchstart', (e) => {
-                   const dropdowns = document.getElementsByClassName('dropdown-content');
-                   const buttons = document.getElementsByClassName('language-btn');
-                   
-                   if (!e.target.matches('.language-btn') && 
-                       !e.target.matches('.language-btn *') && 
-                       !e.target.matches('.dropdown-content *')) {
-                       for (let dropdown of dropdowns) {
-                           dropdown.classList.remove('show');
-                       }
-                       for (let button of buttons) {
-                           button.classList.remove('active');
-                       }
-                   }
-               });
-           }
-       });
-
-       function toggleDropdown(event) {
-           event && event.stopPropagation();
-           const dropdown = document.getElementById('langDropdown');
-           const button = document.querySelector('.language-btn');
-           dropdown.classList.toggle('show');
-           button.classList.toggle('active');
-       }
-
-       // 处理点击事件
-       window.addEventListener('click', function(event) {
-           if (!event.target.matches('.language-btn') && 
-               !event.target.matches('.language-btn *') && 
-               !event.target.matches('.dropdown-content *')) {
-               const dropdowns = document.getElementsByClassName('dropdown-content');
-               const buttons = document.getElementsByClassName('language-btn');
-               
-               for (let dropdown of dropdowns) {
-                   if (dropdown.classList.contains('show')) {
-                       dropdown.classList.remove('show');
-                   }
-               }
-               
-               for (let button of buttons) {
-                   if (button.classList.contains('active')) {
-                       button.classList.remove('active');
-                   }
-               }
-           }
-       });
-
-       function changeLanguage(lang, closeDropdown = true) {
-           currentLang = lang;
-           localStorage.setItem('language', lang);
-           
-           updateLanguage();
-           document.querySelector('.current-lang').textContent = 
-               lang === 'zh' ? '中文' : 'EN';
-           document.documentElement.lang = lang;
-           
-           updateDocsLinks();
-
-           if (closeDropdown) {
-               document.getElementById('langDropdown').classList.remove('show');
-               document.querySelector('.language-btn').classList.remove('active');
-           }
-       }
-
-       function updateLanguage() {
-           document.querySelectorAll('[data-lang-zh]').forEach(element => {
-               element.textContent = element.getAttribute(`data-lang-${currentLang}`);
-           });
-       }
-
-       function updateDocsLinks() {
-           document.querySelector('.docs-link').href = DOCS_URLS[currentLang];
-           document.querySelector('.docs-button').href = DOCS_URLS[currentLang];
-       }
-   </script>
+    
+        // 语言切换相关
+        window.addEventListener('DOMContentLoaded', () => {
+            changeLanguage(currentLang, false);
+            document.querySelector('.current-lang').textContent = 
+                currentLang === 'zh' ? '中文' : 'EN';
+    
+            if ('ontouchstart' in window) {
+                document.addEventListener('touchstart', handleClickOutside);
+            }
+        });
+    
+        function toggleDropdown(event) {
+            event && event.stopPropagation();
+            const dropdown = document.getElementById('langDropdown');
+            const button = document.querySelector('.language-btn');
+            dropdown.classList.toggle('show');
+            button.classList.toggle('active');
+        }
+    
+        function handleClickOutside(event) {
+            if (!event.target.matches('.language-btn') && 
+                !event.target.matches('.language-btn *') && 
+                !event.target.matches('.dropdown-content *')) {
+                const dropdowns = document.getElementsByClassName('dropdown-content');
+                const buttons = document.getElementsByClassName('language-btn');
+                
+                Array.from(dropdowns).forEach(dropdown => dropdown.classList.remove('show'));
+                Array.from(buttons).forEach(button => button.classList.remove('active'));
+            }
+        }
+    
+        window.addEventListener('click', handleClickOutside);
+    
+        function changeLanguage(lang, closeDropdown = true) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            
+            updateLanguage();
+            document.querySelector('.current-lang').textContent = 
+                lang === 'zh' ? '中文' : 'EN';
+            document.documentElement.lang = lang;
+            
+            updateDocsLinks();
+    
+            if (closeDropdown) {
+                document.getElementById('langDropdown').classList.remove('show');
+                document.querySelector('.language-btn').classList.remove('active');
+            }
+        }
+    
+        function updateLanguage() {
+            document.querySelectorAll('[data-lang-zh]').forEach(element => {
+                element.textContent = element.getAttribute(`data-lang-${currentLang}`);
+            });
+        }
+    
+        function updateDocsLinks() {
+            const docsLinks = document.querySelectorAll('.docs-link');
+            docsLinks.forEach(link => {
+                link.href = DOCS_URLS[currentLang];
+            });
+        }
+    </script>
 </body>
 </html>
