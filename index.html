@@ -360,7 +360,7 @@
         .hero {
             height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             padding: 2rem;
             margin-top: 60px;
@@ -379,7 +379,20 @@
             padding: 3rem;
             border-radius: 10px;
             position: relative;
-            margin-top: -110px;
+            margin-top: 15vh;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero-content {
+                margin-top: 10vh; /* 移动端可以略微调整 */
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .hero-content {
+                margin-top: 20vh; /* 大屏幕可以设置更大的距离 */
+            }
         }
 
         .hero h1 {
@@ -432,24 +445,35 @@
         .features {
             padding: 4rem 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* 改为固定三列 */
             gap: 2rem;
             background: white;
             margin-top: auto;
+            width: 100%; /* 确保宽度100% */
+            max-width: 100%; /* 移除最大宽度限制 */
         }
 
         .feature-card {
-            padding: 2rem;
-            border-radius: 8px;
+            padding: 2.5rem;
+            border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-color);
+            transition: color 0.3s ease;
         }
 
         .disabled-card {
@@ -457,9 +481,77 @@
             opacity: 0.7;
         }
 
-        .disabled-text {
-            color: #999;
-            font-style: italic;
+        /* 恢复 disabled 卡片的 hover 效果 */
+        .disabled-card:hover {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .whitepaper-card {
+            cursor: pointer;
+        }
+
+        .whitepaper-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .whitepaper-card:hover .feature-icon {
+            color: var(--primary-color); /* 改为主题黑色 */
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin: 0;
+            color: var(--text-color);
+            letter-spacing: 0.5px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr; /* 移动端改为单列 */
+                padding: 3rem 1rem;
+                gap: 1.5rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+                min-height: 180px;
+            }
+
+            .feature-icon {
+                font-size: 2.4rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* 平板适配 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr); /* 平板端改为两列 */
+            }
+        }
+
+        /* 深色主题适配（如果需要） */
+        @media (prefers-color-scheme: dark) {
+            .feature-card {
+                background: rgba(255, 255, 255, 0.05);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* 针对 Safari 的优化 */
+        @supports (-webkit-backdrop-filter: none) {
+            .feature-card {
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
         }
 
         .whitepaper-link {
@@ -725,27 +817,22 @@
     </section>
 
     <section class="features">
-        <div class="feature-card disabled-card">
+        <div class="feature-card disabled-card" title="Coming soon">
             <i class="fas fa-graduation-cap feature-icon"></i>
             <h3 data-lang-zh="开发者学堂" data-lang-en="Developer Academy">开发者学堂</h3>
-            <p class="disabled-text" data-lang-zh="Coming soon" data-lang-en="Coming soon">Coming soon</p>
         </div>
         
-        <div class="feature-card disabled-card">
+        <div class="feature-card disabled-card" title="Coming soon">
             <i class="fas fa-calendar-days feature-icon"></i>
             <h3 data-lang-zh="开发者活动" data-lang-en="Developer Events">开发者活动</h3>
-            <p class="disabled-text" data-lang-zh="Coming soon" data-lang-en="Coming soon">Coming soon</p>
         </div>
         
-        <div class="feature-card">
+        <a href="https://67254fdgibvbmfsifsluaw6vpzij2burc67jcmcutcunf2be4t5q.arweave.net/9_XeFGZAahYWSCyXQFvVflCdBpEXvpEwVJio0ugk5Ps" 
+           target="_blank" 
+           class="feature-card whitepaper-card">
             <i class="fas fa-book feature-icon"></i>
             <h3 data-lang-zh="Arweave 白皮书" data-lang-en="Arweave Whitepaper">Arweave 白皮书</h3>
-            <a href="https://67254fdgibvbmfsifsluaw6vpzij2burc67jcmcutcunf2be4t5q.arweave.net/9_XeFGZAahYWSCyXQFvVflCdBpEXvpEwVJio0ugk5Ps" 
-               target="_blank" 
-               class="whitepaper-link">
-                <p data-lang-zh="点击查看" data-lang-en="View Whitepaper">点击查看</p>
-            </a>
-        </div>
+        </a>
     </section>
 
     <footer class="footer">
