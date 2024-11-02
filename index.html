@@ -835,10 +835,12 @@
             <i class="fas fa-calendar-days feature-icon"></i>
             <h3 data-lang-zh="开发者活动" data-lang-en="Developer Events">开发者活动</h3>
         </div>
-        
-        <a href="https://67254fdgibvbmfsifsluaw6vpzij2burc67jcmcutcunf2be4t5q.arweave.net/9_XeFGZAahYWSCyXQFvVflCdBpEXvpEwVJio0ugk5Ps" 
-           target="_blank" 
-           class="feature-card whitepaper-card">
+
+        <a href="https://default-link.com" 
+            target="_blank" 
+            class="feature-card whitepaper-card" 
+            data-href-zh="https://67254fdgibvbmfsifsluaw6vpzij2burc67jcmcutcunf2be4t5q.arweave.net/9_XeFGZAahYWSCyXQFvVflCdBpEXvpEwVJio0ugk5Ps" 
+            data-href-en="https://nm5d5uvmhjw363xf3idhjrd6nllqqrk76kkjbfpavyfmf7zzddxa.arweave.net/azo-0qw6bb9u5doGdMR-atcIRV_ylJCV4K4Kwv85GO4">
             <i class="fas fa-book feature-icon"></i>
             <h3 data-lang-zh="Arweave 白皮书" data-lang-en="Arweave Whitepaper">Arweave 白皮书</h3>
         </a>
@@ -974,6 +976,7 @@
             document.documentElement.lang = lang;
             
             updateDocsLinks();
+            updateWhitepaperLink(); // 新增调用，更新白皮书链接
     
             if (closeDropdown) {
                 document.getElementById('langDropdown').classList.remove('show');
@@ -993,6 +996,24 @@
                 link.href = DOCS_URLS[currentLang];
             });
         }
+
+        // 新增函数：更新白皮书链接
+        function updateWhitepaperLink() {
+            const whitepaperLink = document.querySelector('.whitepaper-card');
+            if (currentLang === 'zh') {
+                whitepaperLink.href = whitepaperLink.getAttribute('data-href-zh');
+            } else {
+                whitepaperLink.href = whitepaperLink.getAttribute('data-href-en');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            changeLanguage(currentLang, false);
+            document.querySelector('.current-lang').textContent = 
+                currentLang === 'zh' ? '中文' : 'EN';
+
+            updateWhitepaperLink(); // 页面加载时调用，确保链接正确
+        });
     </script>
 </body>
 </html>
